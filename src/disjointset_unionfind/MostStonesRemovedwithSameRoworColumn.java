@@ -8,6 +8,7 @@ package disjointset_unionfind;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 /**
  * https://leetcode.com/explore/interview/card/google/61/trees-and-graphs/3076/
@@ -58,9 +59,75 @@ public class MostStonesRemovedwithSameRoworColumn {
 
   public static void main(String[] args) {
     MostStonesRemovedwithSameRoworColumn o = new MostStonesRemovedwithSameRoworColumn();
-    System.out.println(o.removeStones(new int[][]{{0,0},{0,1},{1,0},{1,2},{1,1}}));
+    System.out.println(o.removeStones_own(new int[][]{{0,0},{0,1},{1,0},{1,2},{1,1}}));
+    System.out.println(o.removeStones_faster(new int[][]{{0,3},{2,3}}));
     System.out.println(o.removeStones(new int[][]{{0,1},{0,2},{4,3},{2,4},{0,3},{1,1}}));
     System.out.println(o.removeStones(new int[][]{{0,1},{1,1}}));
+  }
+
+  class UnionFind {
+    int[] parent;
+    int[] rank;
+
+    UnionFind(int size) {
+      this.parent = new int[size];
+      this.rank = new int[size];
+
+      IntStream.range(0, size).forEach(i -> parent[i] = i);
+    }
+
+    private int find(int node) {
+      if (parent[node] == node) {
+        return parent[node];
+      }
+      return find(parent[node]);
+    }
+
+    private int union(int node1, int node2) {
+      int pn1 = find(node1);
+      int pn2 = find(node2);
+
+      if (pn1 == pn2) {
+        return 0;
+      } else {
+        if (rank[pn2] > rank[pn1]) {
+          parent[pn1] = pn2;
+          rank[pn2]++;
+        } else {
+          parent[pn2] = pn1;
+          rank[pn1]++;
+        }
+        return 1;
+      }
+    }
+  }
+
+  public int removeStones_own(int[][] stones) {
+
+    int n = stones.length;
+    UnionFind uf = new UnionFind(n+1);
+
+    int[] rows = new int[10001];
+    int[] cols = new int[10001];
+    int islands = n;
+
+    for (int i = 1; i <= n; i++) {
+      int row = stones[i-1][0];
+      int col = stones[i-1][1];
+
+      if (rows[row] == 0) {
+        rows[row] = i;
+      } else {
+        islands -= uf.union(rows[row], i);
+      }
+
+      if (cols[col] == 0) {
+        cols[col] = i;
+      } else {
+        islands -= uf.union(cols[col], i);
+      }
+    }
+    return n - islands;
   }
 
   public int removeStones_faster(int[][] stones) {

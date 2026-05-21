@@ -51,7 +51,9 @@ package TreesAndGraphs;
  * From the top left corner, its position is one row below and three columns right.
  * Notes:
  *
- * The input is only given to initialize the room and the robot's position internally. You must solve this problem "blindfolded". In other words, you must control the robot using only the mentioned 4 APIs, without knowing the room layout and the initial robot's position.
+ * The input is only given to initialize the room and the robot's position internally. You must solve this problem
+ * "blindfolded". In other words, you must control the robot using only the mentioned 4 APIs,
+ * without knowing the room layout and the initial robot's position.
  * The robot's initial position will always be in an accessible cell.
  * The initial direction of the robot will be facing up.
  * All accessible cells are connected, which means the all cells marked as 1 will be accessible by the robot.

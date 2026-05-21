@@ -1,4 +1,4 @@
-package QuickSort;
+package Sorting;
 
 /**
  * Author - Sivaprakash Nithyanandam
@@ -84,9 +84,12 @@ public class MaximizeHappinessofSelectedChildren {
     public boolean check(int[] happiness, int mid) {
         int count = 0;
         for(int x:happiness){
-            if(x < mid) continue;
-            if(++count > mid)
+            if(x < mid) {
+                continue;
+            }
+            if(++count > mid) {
                 return true;
+            }
         }
 
         return false;
@@ -99,8 +102,12 @@ public class MaximizeHappinessofSelectedChildren {
         int left = low - 1, right = high + 1, mid = low + high >> 1;
         int x = nums[mid];
         while (left < right) {
-            while (nums[++left] < x) continue;
-            while (nums[--right] > x) continue;
+            while (nums[++left] < x) {
+                continue;
+            }
+            while (nums[--right] > x) {
+                continue;
+            }
             if (left < right) {
                 int temp = nums[left];
                 nums[left] = nums[right];

@@ -37,9 +37,34 @@ import java.util.Random;
 public class KthLargestElementinanArray {
 
   public static void main(String[] args) {
-    KthLargestElementinanArray o = new KthLargestElementinanArray();
+    KthLargestElementinanArray o = new KthLargestElementinanArray(3, new int[]{4, 5, 8, 2});
+    System.out.println(o.add(3));
+    System.out.println(o.add(5));
+    System.out.println(o.add(10));
+    System.out.println(o.add(9));
+    System.out.println(o.add(4));
+
+
+//    System.out.println(o.KthLargestElementinanArray(new int[]{4, 5, 8, 2}, 3));
     System.out.println(o.findKthLargest(new int[]{3,2,1,5,6,4}, 2));
     System.out.println(o.findKthLargest_faster(new int[]{3,2,1,5,6,4}, 2));
+  }
+
+  private PriorityQueue<Integer> minHeap;
+  private final int s;
+
+  public KthLargestElementinanArray(int k, int[] nums) {
+    this.minHeap = new PriorityQueue<>((n1, n2) -> n1 - n2);
+    this.s = k;
+    Arrays.stream(nums).forEach(num -> this.add(num));
+  }
+
+  public int add(int val) {
+    this.minHeap.offer(val);
+    if (this.minHeap.size() > this.s) {
+      this.minHeap.poll();
+    }
+    return this.minHeap.peek();
   }
 
   public int findKthLargest_faster(int[] nums, int k) {

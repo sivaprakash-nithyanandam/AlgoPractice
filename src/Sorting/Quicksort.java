@@ -1,4 +1,4 @@
-package QuickSort;
+package Sorting;
 /**
  * Author - Sivaprakash Nithyanandam Timestamp - 7/14/2021  11:45 PM
  *

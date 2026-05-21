@@ -62,21 +62,37 @@ public class FindSubarrayWithBitwiseANDClosesttoK {
 
     public static void main(String[] args) {
         FindSubarrayWithBitwiseANDClosesttoK o = new FindSubarrayWithBitwiseANDClosesttoK();
-        System.out.println(o.minimumDifference(new int[]{4,5,6,7}, 3));
+        System.out.println(o.minimumDifference(new int[]{4,1,5,6,7}, 3));
+        System.out.println(o.minimumDifference_v1(new int[]{4,5,6,7,8,9,10}, 3));
         System.out.println(o.minimumDifference(new int[]{1,2,4,5}, 3));
     }
+
+    public int minimumDifference_v1(int[] A, int k) {
+        int res = Integer.MAX_VALUE;
+        for (int i = 0; i < A.length; i++) {
+            res = Math.min(res, Math.abs(A[i] - k));
+            for (int j = i - 1; j >= 0 && (A[j] & A[i]) != A[j]; j--) {
+                A[j] &= A[i];
+                res = Math.min(res, Math.abs(A[j] - k));
+            }
+        }
+        return res;
+    }
+
 
     public int minimumDifference(int[] nums, int k) {
         int n = nums.length;
         int[] a = {};
         int min = Integer.MAX_VALUE;
-        for(int i = 0;i < n;i++){
+        for(int i = 0; i < n; i++) {
             int v = nums[i];
             int[] na = new int[a.length+1];
             int p = 0;
             na[p++] = v;
+
             min = Math.min(min, Math.abs(v-k));
-            for(int j = 0;j < a.length;j++){
+
+            for(int j = 0; j < a.length; j++){
                 int w = a[j] & v;
                 if(na[p-1] != w){
                     na[p++] = w;

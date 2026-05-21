@@ -19,8 +19,8 @@ public class MinimumWindowSubstring {
 
   public static void main(String[] args) {
     MinimumWindowSubstring mws = new MinimumWindowSubstring();
-    System.out.println(mws.minWindow_own("ADOBECODEBANC", "ABC"));
-    System.out.println(mws.minWindow_optimized("ab", "b"));
+    System.out.println(mws.minWindow_own("ab", "b"));
+    System.out.println(mws.minWindow_own("OOADOBECODEBANC", "ABC"));
     System.out.println(mws.minWindow_own("ab", "b"));
     System.out.println(mws.minWindow("ADOBECODEBANC", "ABC"));
     System.out.println(mws.minWindow("ADOBECODEBANC", "ABC"));

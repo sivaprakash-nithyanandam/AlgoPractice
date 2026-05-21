@@ -1,4 +1,4 @@
-package FenwickTree_or_BinaryIndexedTree;
+package range_probs_SegmentTree_Fenwick_or_BinaryIndexedTree;
 
 /**
  * Author - Sivaprakash Nithyanandam
@@ -129,9 +129,7 @@ public class PeaksinArray {
     private int queryBit(int i, int j, int[] bits) {
         if (i > j) {
             return 0;
-        } /*else if (i == j) {
-            return queryBit(i+1, bits);
-        }*/ else {
+        } else {
             int a = queryBit(j+1, bits);
             int b = queryBit(i, bits);
             return a - b;

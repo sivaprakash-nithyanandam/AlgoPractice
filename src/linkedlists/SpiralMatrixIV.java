@@ -16,6 +16,8 @@ package linkedlists;
  * Output: 9 -> 1 -> 2. That is, 912.
  */
 
+import java.util.Arrays;
+
 /**
  * For #2 problem, its bit tricky. Take only matching lenghts of two lists and add.
  * Once thats complete, take remaining
@@ -46,48 +48,101 @@ public class SpiralMatrixIV {
         list1.next.next.next.next.next.next.next.next.next.next.next = new Node(4);
 
         SpiralMatrixIV o = new SpiralMatrixIV();
-        o.spiralMatrix(3,4, list1);
+        o.spiralMatrix_clean_faster(10,1, list1);
+        o.spiralMatrix_1(3,4, list1);
 
     }
 
-    Node curr;
-
-    public int[][] spiralMatrix(int m, int n, Node head) {
+    public int[][] spiralMatrix_1(int m, int n, Node head) {
         this.curr = head;
 
         int[][] res = new int[m][n];
-        int roll = (m+1)/2;
 
+        int r = 0;
 
-        for (int i = 0; i < roll; i++) {
+        while (r <= m/2) {
+            int i = r;
+            int j = r;
 
-            for (int c = i; c < n-i; c++) {
-                res[i][c] = nextVal();
+            while (j < n-r) {
+                res[i][j] = getVal();
+                j++;
             }
+            j--;
+            i++;
 
-            for (int r = i+1; r < m-i; r++) {
-                res[r][n-i-1] = nextVal();
+            while (i < m-r && j <= n-1-r) {
+                res[i][j] = getVal();
+                i++;
             }
+            i--;
+            j--;
 
-            for (int c = n-2-i; c >= i && i < m - i - 1; c--) {
-                res[m-i-1][c] = nextVal();
+            while (j >= r && i > r) {
+                res[i][j] = getVal();
+                j--;
             }
+            j++;
+            i--;
 
-            for (int r = m-2-i; r > i; r--) {
-                res[r][i] = nextVal();
+            while (i > r && j < n-1-r) {
+                res[i][j] = getVal();
+                i--;
             }
+            r++;
         }
         return res;
     }
 
-    private int nextVal() {
-
-        if (this.curr != null) {
-            int val = this.curr.val;
-            this.curr = this.curr.next;
-            return val;
-        } else {
+    private int getVal() {
+        if (curr == null) {
             return -1;
         }
+        int val = curr.val;
+        curr = curr.next;
+        return val;
+    }
+
+    Node curr;
+
+    public int[][] spiralMatrix_clean_faster(int rows, int columns, Node head) {
+        int[][] matrix = new int[rows][];
+        for (int i = 0; i < rows; i++) {
+            matrix[i] = new int [columns];
+            Arrays.fill(matrix[i], -1);
+        }
+
+        int topRow = 0, bottomRow = rows - 1, leftColumn = 0, rightColumn = columns - 1;
+        while (head != null) {
+
+            for (int col = leftColumn; col <= rightColumn && head != null; col++) {
+                matrix[topRow][col] = head.val;
+                head = head.next;
+            }
+            topRow++;
+
+
+            for (int row = topRow; row <= bottomRow && head != null; row++) {
+                matrix[row][rightColumn] = head.val;
+                head = head.next;
+            }
+            rightColumn--;
+
+
+            for (int col = rightColumn; col >= leftColumn && head != null; col--) {
+                matrix[bottomRow][col] = head.val;
+                head = head.next;
+            }
+            bottomRow--;
+
+
+            for (int row = bottomRow; row >= topRow && head != null; row--) {
+                matrix[row][leftColumn] = head.val;
+                head = head.next;
+            }
+            leftColumn++;
+        }
+
+        return matrix;
     }
 }

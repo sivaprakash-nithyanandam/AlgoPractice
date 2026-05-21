@@ -1,4 +1,4 @@
-package SegmentTree;
+package range_probs_SegmentTree_Fenwick_or_BinaryIndexedTree;
 /**
  * Author - Sivaprakash Nithyanandam Timestamp - 7/10/2021  12:41 PM
  *
@@ -29,7 +29,7 @@ package SegmentTree;
  * 1 <= nums.length <= 105 -231 <= nums[i] <= 231 - 1 -105 <= lower <= upper <= 105 The answer is
  * guaranteed to fit in a 32-bit integer.
  */
-public class CountofRangeSum {
+public class CountofRangeSum_segment_tree {
 
   private int lower;
   private int upper;
@@ -198,7 +198,7 @@ public class CountofRangeSum {
   }
 
   public static void main(String[] args) {
-    CountofRangeSum o = new CountofRangeSum();
+    CountofRangeSum_segment_tree o = new CountofRangeSum_segment_tree();
     System.out.println(o.countRangeSum(new int[]{-2,5,-1}, -2, 2));
     System.out.println(o.countRangeSum(new int[]{1}, -2, 2));
     System.out.println(o.countRangeSum(new int[]{0, -3, -3, 1, 1, 2}, 3, 4));

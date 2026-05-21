@@ -43,11 +43,61 @@ public class Candy {
 
   public static void main(String[] args) {
     Candy o = new Candy();
+    System.out.println(o.candy_best(new int[]{1,2,3,1,0}));
+    System.out.println(o.candy_best(new int[]{29,51,87,87,72,12}));
     System.out.println(o.candy(new int[]{1,2,87,87,87,2,1}));
     System.out.println(o.candy(new int[]{1,2,2}));
     System.out.println(o.candy(new int[]{1,0,2}));
   }
 
+  public static int candy_best(int[] ratings) {
+    int n = ratings.length;
+
+    // минимум: первый получает одну конфету
+    int candies = 1;
+
+    // длина текущего подъёма
+    int up = 1;
+
+    // длина текущего спуска
+    int down = 0;
+
+    // длина последнего завершённого подъёма
+    int peak = 1;
+
+    for (int i = 1; i < n; i++) {
+
+      if (ratings[i] > ratings[i - 1]) {
+        // пошли вверх
+        up++;
+        peak = up;
+        down = 0;
+
+        candies += up;
+
+
+      } else if (ratings[i] < ratings[i - 1]) {
+        // пошли вниз
+        down++;
+        up = 1;
+
+        candies += down;
+
+        // если спуск стал длиннее пика – даём бонус вершине
+        if (down >= peak) candies++;
+
+      } else {
+        // плато – всё обнуляется
+        up = 1;
+        down = 0;
+        peak = 1;
+
+        candies += 1;
+      }
+    }
+
+    return candies;
+  }
   public int candy(int[] ratings) {
     int[] candies = new int[ratings.length];
     Arrays.fill(candies, 1);

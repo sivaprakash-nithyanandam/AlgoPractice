@@ -54,6 +54,8 @@ public class MinimumSubstringPartitionofEqualCharacterFrequency {
     }
 
     /**
+     * Different reference: https://www.youtube.com/watch?v=Wr7czdXQXN4
+     *
      * Its a sliding window technique, where i to j of substrings of given string will be counted of english letters
      * and check if its balanced, if so mark balanced[i][j] true.
      * Again iterate given string of i to j in the balanced array and if its balanced, count the sum between i to j and

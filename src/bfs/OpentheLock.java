@@ -7,12 +7,8 @@ package bfs;
  * Apr 22,2024 - 7:58 PM
  */
 
-import java.util.Queue;
-import javafx.util.Pair;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.Set;
+import java.util.Queue;
 
 /**
  * https://leetcode.com/problems/open-the-lock/description/
@@ -132,7 +128,7 @@ public class OpentheLock {
         return -1;
     }
 
-    public int openLock_95ms(String[] deadends, String target) {
+    /*public int openLock_95ms(String[] deadends, String target) {
 
         Set<String> deadendSet = new HashSet<>(Arrays.asList(deadends));
 
@@ -168,6 +164,6 @@ public class OpentheLock {
             }
         }
         return -1;
-    }
+    }*/
 
 }

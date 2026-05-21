@@ -31,6 +31,57 @@ public class LongestPalindromicSubstring {
     //System.out.println(o.longestPalindrome_faster("paapa"));
   }
 
+  //manacher's algorithm
+  //https://www.youtube.com/watch?v=IvakBbsAhUU
+  public String longestPalindrome(String s) {
+    int n = s.length();
+    int nn = 2 * n + 1;
+    char[] newStr = new char[nn];
+
+    int k = 0;
+    newStr[k++] = '#';
+    for (char c : s.toCharArray()) {
+      newStr[k++] = c;
+      newStr[k++] = '#';
+    }
+
+    int[] p = new int[nn];
+    int right = 0;
+    int center = 0;
+    int longestLen = 0;
+    int longestCenter = 0;
+
+    for (int i = 0; i < nn; i++) {
+      int mirror = 2 * center - i;
+
+      if (right > i) {
+        p[i] = Math.min(p[mirror], right-i);
+      }
+
+      int f = i + (p[i] + 1);
+      int b = i - (p[i] + 1);
+
+      while (b >= 0 && f < nn && newStr[f] == newStr[b]) {
+        f++;
+        b--;
+        p[i]++;
+      }
+
+      if (i + p[i] > right) {
+        center = i;
+        right = i + p[i];
+      }
+
+      if (p[i] > longestLen) {
+        longestLen = p[i];
+        longestCenter = i;
+      }
+    }
+
+    String res = new String(newStr);
+    return res.substring(longestCenter - longestLen, longestCenter + longestLen).replace("#", "");
+  }
+
   public String longestPalindrome1(String s) {
 
     int i, j = 0, k;
@@ -94,7 +145,7 @@ public class LongestPalindromicSubstring {
     longestPalindromeAt(c, p + 1);
   }
 
-  public String longestPalindrome(String s) {
+  public String longestPalindrome_v2(String s) {
     boolean[][] b = new boolean[s.length()][s.length()];
 
     for (int i = 0; i < s.length(); i++) {

@@ -13,10 +13,10 @@ import java.util.Map;
  */
 public class LRUCache {
 
-  public static void main(String[] args) {
-    //LRUCache o = new LRUCache();
-    System.out.println();
-  }
+  private Map<Integer, DLinkedNode> cache = new HashMap<>();
+  private int size, capacity;
+  private DLinkedNode head, tail;
+
 
   class DLinkedNode {
     int key;
@@ -64,11 +64,9 @@ public class LRUCache {
     return res;
   }
 
-  private Map<Integer, DLinkedNode> cache = new HashMap<>();
-  private int size;
-  private int capacity;
-  private DLinkedNode head, tail;
+  public LRUCache() {
 
+  }
   public LRUCache(int capacity) {
     this.size = 0;
     this.capacity = capacity;

@@ -63,7 +63,7 @@ public class TextJustification {
     TextJustification tj = new TextJustification();
 
     words = new String[]{"This", "is", "an", "example", "of", "text", "justification."};
-    res = tj.fullJustify(words, 16);
+    res = tj.fullJustify_own(words, 16);
     for (String s : res) {
       System.out.println(s);
     }

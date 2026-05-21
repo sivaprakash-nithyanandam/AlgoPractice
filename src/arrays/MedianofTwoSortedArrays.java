@@ -14,6 +14,8 @@ public class MedianofTwoSortedArrays {
   public static void main(String[] args) {
     MedianofTwoSortedArrays o = new MedianofTwoSortedArrays();
 
+    System.out.println(o.findMedianSortedArrays_revisit(new int[]{2,3,4,5}, new int[]{1}));
+    System.out.println(o.findMedianSortedArrays_revisit(new int[]{1, 2}, new int[]{3, 4}));
     System.out
             .println(o.findMedianSortedArrays(new int[]{1,3,8,9,15}, new int[]{7,11,18,19,21,25}));
     System.out
@@ -31,7 +33,40 @@ public class MedianofTwoSortedArrays {
         o.findMedianSortedArrays(new int[]{1, 2, 3, 4, 5, 6}, new int[]{6, 7, 8, 9, 10, 11}));
     System.out.println(
         o.findMedianSortedArrays(new int[]{1, 2, 3, 4, 5, 6}, new int[]{7, 8, 9, 10, 11, 12}));
-    System.out.println(o.findMedianSortedArrays(new int[]{1, 3}, new int[]{2}));
+  }
+
+  public double findMedianSortedArrays_revisit(int[] nums1, int[] nums2) {
+
+    if (nums2.length < nums1.length) {
+      return findMedianSortedArrays_revisit(nums2, nums1);
+    }
+
+    int n = nums1.length + nums2.length;
+    int l = 0, r = nums1.length;
+    int i, j;
+
+    while (true) {
+      i = (l+r)/2;
+      j = (n/2) - i;
+
+      int r1 = i >= nums1.length ? Integer.MAX_VALUE : nums1[i];
+      int l1 = i-1 < 0 ? Integer.MIN_VALUE : nums1[i-1];
+
+      int r2 = j >= nums2.length ? Integer.MAX_VALUE : nums2[j];
+      int l2 = j-1 < 0 ? Integer.MIN_VALUE : nums2[j-1];
+
+      if (r1 >= l2 && r2 >= l1) {
+        if (n % 2 == 0) {
+          return (double)(Math.max(l1, l2) + Math.min(r1, r2))/2;
+        } else {
+          return (double)(Math.min(r1, r2));
+        }
+      } else if (l1 > r2) {
+        r = i - 1;
+      } else {
+        l = i+1;
+      }
+    }
   }
 
   public double findMedianSortedArrays_try(int[] nums1, int[] nums2) {

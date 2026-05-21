@@ -113,7 +113,7 @@ public class MinCosttoConnectAllPoints {
             if (arr[node] == node) {
                 return node;
             }
-            return find(arr[node]);
+            return arr[node] = find(arr[node]);
         }
 
     }
@@ -133,9 +133,7 @@ public class MinCosttoConnectAllPoints {
 
         while(!pq.isEmpty() && remV > 0) {
             int[] v = pq.poll();
-            /*if (vis[v[1]]) {
-                continue;
-            }*/
+
             resCost += v[2];
             vis[v[1]] = true;
             int i = v[1];

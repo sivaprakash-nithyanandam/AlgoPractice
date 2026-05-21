@@ -10,7 +10,6 @@ package Graph;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.PriorityQueue;
 
 /**
  * https://leetcode.com/explore/featured/card/graph/622/single-source-shortest-path-algorithm/3952/
@@ -129,16 +128,16 @@ class UnionFind {
     }
 
 
-class Edge {
-    int x;
-    int y;
-    int difference;
+    class Edge {
+        int x;
+        int y;
+        int difference;
 
-    Edge(int x, int y, int difference) {
-        this.x = x;
-        this.y = y;
-        this.difference = difference;
+        Edge(int x, int y, int difference) {
+            this.x = x;
+            this.y = y;
+            this.difference = difference;
+        }
     }
-}
 
 }

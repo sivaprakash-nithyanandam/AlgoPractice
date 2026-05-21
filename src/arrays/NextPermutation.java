@@ -18,12 +18,14 @@ public class NextPermutation {
 
     public static void main(String[] args) {
         NextPermutation o = new NextPermutation();
+
+
+        o.nextPermutation(new int[]{7, 9, 8, 3, 2, 1}); //8 9 7 3 2 1
+        o.nextPermutation(new int[]{4, 5, 6, 3, 2, 1});
         o.nextPermutation(new int[]{2, 3, 1});
         o.nextPermutation(new int[]{3, 2, 1});
         o.nextPermutation(new int[]{1});
         o.nextPermutation(new int[]{1, 2, 3});
-        o.nextPermutation(new int[]{4, 5, 6, 3, 2, 1});
-        o.nextPermutation(new int[]{7, 9, 8, 3, 2, 1});
     }
 
     public void nextPermutation(int[] nums) {

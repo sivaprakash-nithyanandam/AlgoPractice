@@ -59,7 +59,9 @@ public class ConstructBinaryTreefromPreorderandInorderTraversal {
 
   public static void main(String[] args) {
     ConstructBinaryTreefromPreorderandInorderTraversal o = new ConstructBinaryTreefromPreorderandInorderTraversal();
-    TreeNode res = o.buildTree_faster(new int[]{3,9,6,1,4,8,5,2,20,15,7}, new int[]{1,6,4,9,5,8,2,3,15,20,7});
+    TreeNode res = o.buildTree_faster(new int[]{3,9,8,7,10,1,2}, new int[]{8,9,7,1,10,2,3});
+    res = o.buildTree_faster(new int[]{3,9,20,15,7}, new int[]{9,3,15,20,7});
+    res = o.buildTree_faster(new int[]{3,9,6,1,4,8,5,2,20,15,7}, new int[]{1,6,4,9,5,8,2,3,15,20,7});
     res = o.buildTree_faster(new int[]{3,9,20,15,7}, new int[]{9,3,15,20,7});
     res = o.buildTree(new int[]{3,9,20,15,7}, new int[]{9,3,15,20,7});
     System.out.println("Completed");
@@ -72,7 +74,9 @@ public class ConstructBinaryTreefromPreorderandInorderTraversal {
   }
 
   TreeNode helper(int[] preorder, int[] inorder, int stop) {
-    if (pre >= preorder.length) return null;
+    if (pre >= preorder.length) {
+      return null;
+    }
     if (inorder[in] == stop) {
       in++;
       return null;

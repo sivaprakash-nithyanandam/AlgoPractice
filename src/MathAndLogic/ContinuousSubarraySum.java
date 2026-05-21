@@ -56,13 +56,40 @@ public class ContinuousSubarraySum {
         System.out.println(o.checkSubarraySum(new int[]{23,2,4,6,7}, 6));
     }
 
+    public boolean checkSubarraySum(int[] nums, int k) {
+
+        for(int i=1;i<nums.length;i++){
+            if(nums[i] == 0 && nums[i-1] ==0) return true;
+        }
+
+        Map<Integer, Integer> map = new HashMap<>(){{put(0, -1);}};
+
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            sum %= k;
+            if (map.containsKey(sum)) {
+                if (i - map.get(sum) > 1) {
+                    return true;
+                }
+            } else {
+                map.put(sum, i);
+            }
+        }
+        return false;
+    }
+
     /**
-     * We iterate through the input array exactly once, keeping track of the running sum mod k of the elements in the process. If we find that a running sum value at index j has been previously seen before in some earlier index i in the array, then we know that the sub-array (i,j] contains a desired sum.
+     * We iterate through the input array exactly once, keeping track of the running sum mod k of the
+     * elements in the process.
+     *
+     * If we find that a running sum value at index j has been previously seen before in some
+     * earlier index i in the array, then we know that the sub-array (i,j] contains a desired sum.
      * @param nums
      * @param k
      * @return
      */
-    public boolean checkSubarraySum(int[] nums, int k) {
+    public boolean checkSubarraySum_v1(int[] nums, int k) {
 
         Map<Integer, Integer> map = new HashMap<>(){{put(0,-1);}};;
 

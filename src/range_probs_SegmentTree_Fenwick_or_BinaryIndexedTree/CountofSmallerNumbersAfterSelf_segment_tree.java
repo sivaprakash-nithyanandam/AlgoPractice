@@ -1,4 +1,4 @@
-package SegmentTree;
+package range_probs_SegmentTree_Fenwick_or_BinaryIndexedTree;
 /**
  * Author - Sivaprakash Nithyanandam Timestamp - 7/9/2021  8:29 PM
  *
@@ -42,10 +42,10 @@ import java.util.List;
  * 1 <= nums.length <= 105
  * -104 <= nums[i] <= 104
  */
-public class CountofSmallerNumbersAfterSelf {
+public class CountofSmallerNumbersAfterSelf_segment_tree {
 
   public static void main(String[] args) {
-    CountofSmallerNumbersAfterSelf o = new CountofSmallerNumbersAfterSelf();
+    CountofSmallerNumbersAfterSelf_segment_tree o = new CountofSmallerNumbersAfterSelf_segment_tree();
     System.out.println(Arrays.asList(o.countSmaller_merge_sort_understandable(new int[]{5,2,6,1})));
     System.out.println(Arrays.asList(o.countSmaller_segment_tree(new int[]{26,78,27,100,33,67,90,23,66,5,38,7,35,23,52,22,83,51,98,69,81,32,78,28,94,13,2,97,3,76,99,51,9,21,84,66,65,36,100,41})));
   }

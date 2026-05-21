@@ -75,9 +75,9 @@ public class ReconstructItinerary {
     }
     public void DFS(String origin){
         if(map.containsKey(origin)){
-            PriorityQueue q = map.get(origin);
-            while(! q.isEmpty()){
-                DFS(q.poll().toString());
+            PriorityQueue<String> q = map.get(origin);
+            while(!q.isEmpty()){
+                DFS(q.poll());
             }
         }
         order.add(0, origin);

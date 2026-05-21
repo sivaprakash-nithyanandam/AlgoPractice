@@ -1,4 +1,4 @@
-package SegmentTree;
+package range_probs_SegmentTree_Fenwick_or_BinaryIndexedTree;
 /**
  * Author - Sivaprakash Nithyanandam Timestamp - 7/10/2021  9:55 AM
  *

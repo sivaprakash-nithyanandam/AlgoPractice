@@ -46,12 +46,17 @@ public class MinimumLengthofAnagramConcatenation {
 
     public static void main(String[] args) {
         MinimumLengthofAnagramConcatenation o = new MinimumLengthofAnagramConcatenation();
+        System.out.println(o.minAnagramLength("abcccba"));
         System.out.println(o.minAnagramLength("abba"));
     }
 
     public int gcd(int x,int y){
-        if(y==0) return x;
-        else return gcd(y,x%y);
+        if(y==0) {
+            return x;
+        }
+        else {
+            return gcd(y,x%y);
+        }
     }
     public int minAnagramLength(String s) {
         int[] cnt=new int[26];

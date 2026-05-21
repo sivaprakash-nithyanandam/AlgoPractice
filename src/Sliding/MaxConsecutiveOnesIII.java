@@ -32,9 +32,9 @@ public class MaxConsecutiveOnesIII {
 
     public static void main(String[] args) {
         MaxConsecutiveOnesIII o = new MaxConsecutiveOnesIII();
+        System.out.println(o.longestOnes_2ms(new int[] { 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0 }, 2));
         System.out.println(o.longestOnes_2ms(new int[] {1, 1, 1, 0, 0, 0, 0, 0 }, 2));
         System.out.println(o.longestOnes(new int[] { 1, 1, 0, 1, 0, 0, 1, 1, 0 }, 1));
-        System.out.println(o.longestOnes(new int[] { 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0 }, 2));
     }
 
     public int longestOnes(int[] A, int K) {

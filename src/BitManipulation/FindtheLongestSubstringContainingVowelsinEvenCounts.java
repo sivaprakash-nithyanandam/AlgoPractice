@@ -7,6 +7,7 @@ package BitManipulation;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * https://leetcode.com/problems/find-the-longest-substring-containing-vowels-in-even-counts/
@@ -41,6 +42,7 @@ public class FindtheLongestSubstringContainingVowelsinEvenCounts {
 
   public static void main(String[] args) {
     FindtheLongestSubstringContainingVowelsinEvenCounts o = new FindtheLongestSubstringContainingVowelsinEvenCounts();
+    System.out.println(o.findTheLongestSubstring_try_this("eleetminicoworoep"));
     System.out.println(o.findTheLongestSubstring_better("eleetminicoworoep"));
     System.out.println(o.findTheLongestSubstring_4ms("eleetminicoworoep"));
     System.out.println(o.findTheLongestSubstring("aeiou"));
@@ -107,6 +109,31 @@ public class FindtheLongestSubstringContainingVowelsinEvenCounts {
       cur ^= pCurr;
       seen.putIfAbsent(cur, i);
       res = Math.max(res, i - seen.get(cur));
+    }
+    return res;
+  }
+
+  public int findTheLongestSubstring_try_this(String s) {
+
+    int[] chars = new int[26];
+    chars['a' - 'a'] = 1 << 0;
+    chars['e' - 'a'] = 1 << 1;
+    chars['i' - 'a'] = 1 << 2;
+    chars['o' - 'a'] = 1 << 3;
+    chars['u' - 'a'] = 1 << 4;
+
+    Map<Integer, Integer> map = new HashMap<>();
+    map.put(0, -1);
+
+    int mask = 0;
+    int res = 0;
+    for (int i = 0; i < s.length(); i++) {
+      mask ^= chars[s.charAt(i) - 'a'];
+      if (map.containsKey(mask)) {
+        res = Math.max(res, i - map.get(mask));
+      } else {
+        map.put(mask, i);
+      }
     }
     return res;
   }

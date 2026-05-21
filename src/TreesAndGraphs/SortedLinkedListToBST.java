@@ -82,6 +82,21 @@ public class SortedLinkedListToBST {
         int llSize = getLLSize();
         TNode tNode = convertLLToBst(llSize);
         printTreeNodes(tNode);
+
+        ConvertBinarySearchTreetoSortedDoublyLinkedList o = new ConvertBinarySearchTreetoSortedDoublyLinkedList();
+        TNode dllNode = o.treeToDoublyList(tNode);
+        System.out.println("");
+        System.out.println("Final linked list:");
+        printDoublyLinkedList(dllNode);
+    }
+
+    private static void printDoublyLinkedList(TNode tNode) {
+        System.out.print(tNode.data + ",");
+        TNode curr = tNode.right;
+        while (curr!= null && curr != tNode) {
+            System.out.print(curr.data + ",");
+            curr = curr.right;
+        }
     }
 
     private static void printTreeNodes(TNode tNode) {
@@ -89,6 +104,40 @@ public class SortedLinkedListToBST {
             System.out.print(tNode.data + ",");
             printTreeNodes(tNode.left);
             printTreeNodes(tNode.right);
+        }
+    }
+
+    static class ConvertBinarySearchTreetoSortedDoublyLinkedList {
+
+        TNode newHead = null;
+        TNode newTail = null;
+
+        public TNode treeToDoublyList(TNode tNode) {
+            dfs(tNode);
+            if (newHead == null) {
+                return tNode;
+            }
+            newHead.left = newTail;
+            newTail.right = newHead;
+
+            return newHead;
+        }
+
+        private void dfs(TNode node) {
+            if (node == null) {
+                return;
+            }
+            dfs(node.left);
+            if (newHead == null) {
+                newHead = node;
+            } else {
+                node.left = newTail;
+                newTail.right = node;
+            }
+
+            newTail = node;
+
+            dfs(node.right);
         }
     }
 }

@@ -51,6 +51,7 @@ public class SumofDistancesinTree {
 
     public static void main(String[] args) {
         SumofDistancesinTree o = new SumofDistancesinTree();
+        System.out.println(o.sumOfDistancesInTree_v1(6, new int[][]{{0,1},{0,2},{2,3},{2,4},{2,5}}));
         System.out.println(o.sumOfDistancesInTree(6, new int[][]{{0,1},{0,2},{2,3},{2,4},{2,5}}));
     }
 

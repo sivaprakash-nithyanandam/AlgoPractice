@@ -1,4 +1,4 @@
-package SegmentTree;
+package range_probs_SegmentTree_Fenwick_or_BinaryIndexedTree;
 
 /**
  * Author - Sivaprakash Nithyanandam
@@ -72,10 +72,10 @@ import java.util.List;
 /**
  * Some reference: https://github.com/mission-peace/interview/blob/master/src/com/interview/tree/SegmentTreeMinimumRangeQuery.java
  */
-public class PeaksinArray {
+public class PeaksinArray_segment_tree {
 
     public static void main(String[] args) {
-        PeaksinArray o = new PeaksinArray();
+        PeaksinArray_segment_tree o = new PeaksinArray_segment_tree();
         System.out.println(o.countOfPeaks(new int[]{4,1,4,2,1,5}, new int[][]{{2,2,4},{1,0,2},{1,0,4}}));
         System.out.println(o.countOfPeaks(new int[]{6,10,8}, new int[][]{{1,0,2},{2,2,8},{2,1,4},{2,0,1}}));
         System.out.println(o.countOfPeaks(new int[]{3,1,4,2,5}, new int[][]{{2,3,4},{1,0,4}}));
@@ -89,7 +89,7 @@ public class PeaksinArray {
 
         for (int i = 1; i < n-1; i++) {
             if (isPeak(i, nums)) {
-                updateSegment(i, 1, 1, segments, 0, n-1, 0);
+                updateSegment(i, 1, segments, 0, n-1, 0);
             }
         }
 
@@ -103,9 +103,9 @@ public class PeaksinArray {
 
                 for (int j = i-1; j <= i+1; j++) {
                     if (isPeak(j, nums)) {
-                        updateSegment(j, 1, 1,segments, 0, n-1, 0);
+                        updateSegment(j, 1,segments, 0, n-1, 0);
                     } else {
-                        updateSegment(j, 0, 1, segments, 0, n-1, 0);
+                        updateSegment(j, 0, segments, 0, n-1, 0);
                     }
                 }
             } else {
@@ -129,7 +129,7 @@ public class PeaksinArray {
         return l + r;
     }
 
-    private void updateSegment(int i, int val, int treeNode, int[] segments, int left, int right, int pos) {
+    private void updateSegment(int i, int val, int[] segments, int left, int right, int pos) {
         if (i < left || i > right || pos > segments.length) {
             return;
         }
@@ -139,8 +139,8 @@ public class PeaksinArray {
         }
 
         int mid = left + (right - left)/2;
-        updateSegment(i, val, treeNode * 2, segments, left, mid, (pos * 2) + 1);
-        updateSegment(i, val, treeNode * 2 + 1, segments, mid+1, right, (pos * 2) + 2);
+        updateSegment(i, val, segments, left, mid, (pos * 2) + 1);
+        updateSegment(i, val, segments, mid+1, right, (pos * 2) + 2);
         segments[pos] = segments[pos * 2 + 1] + segments[pos * 2 + 2];
     }
 

@@ -17,6 +17,10 @@ import java.util.List;
       }
   }
 public class UniqueBinarySearchTreesII {
+    public static void main(String[] args) {
+        new UniqueBinarySearchTreesII().generateTrees(3);
+    }
+
     public List<TreeNode1> generateTrees(int n) {
         return helper(1, n);
     }

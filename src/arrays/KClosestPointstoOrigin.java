@@ -41,13 +41,58 @@ public class KClosestPointstoOrigin {
 
   public static void main(String[] args) {
     KClosestPointstoOrigin o = new KClosestPointstoOrigin();
+    System.out.println(o.kClosest(new int[][]{{1,3},{-2,2}}, 1));
     System.out.println(o.kClosest(new int[][]{{6,6}, {5,5}, {4,4}, {1,1}, {2,2}, {7,7}}, 2));
     System.out.println(o.kClosest(new int[][]{{4, 4}, {7, 7}, {3, 3}, {5, 5}, {6, 6}}, 2));
     System.out.println(o.kClosest(new int[][]{{6, 6}, {5, 5}, {4, 4}, {3, 3}, {2, 2}, {1, 1}}, 2));
     System.out.println(o.kClosest(new int[][]{{3, 3}, {5, -1}, {-2, 4}}, 2));
   }
 
-  public int[][] kClosest(int[][] points, int K) {
+  public int[][] kClosest(int[][] points, int k) {
+
+    int pivot = points.length;
+    int left = 0, right = points.length-1;
+
+    while (pivot != k) {
+      pivot = quickSort(left, right, points);
+
+      if (pivot < k) {
+        left = pivot;
+      } else {
+        right = pivot - 1;
+      }
+    }
+    return Arrays.copyOf(points, k);
+  }
+
+  private int quickSort(int left, int right, int[][] points) {
+    int pivot = left + (right - left)/2;
+    int pivotDist = findDist(points[pivot]);
+
+    while (left < right) {
+      if (findDist(points[left]) >= pivotDist) {
+
+        int[] t = points[left];
+        points[left] = points[right];
+        points[right] = t;
+        right--;
+      } else {
+        left++;
+      }
+    }
+
+    if (findDist(points[left]) < pivotDist) {
+      left++;
+    }
+
+    return left;
+  }
+
+  private int findDist(int[] point) {
+    return point[0] * point[0] + point[1] * point[1];
+  }
+
+  public int[][] kClosest1(int[][] points, int K) {
     int len = points.length, l = 0, r = len - 1;
     while (l <= r) {
       int mid = helper(points, l, r);

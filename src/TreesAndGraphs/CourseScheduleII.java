@@ -5,8 +5,12 @@ package TreesAndGraphs;
  * @see <a href="https://github.com/trysivaprakash">trysivaprakash</a>
  */
 
-import java.util.*;
-import java.util.stream.IntStream;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * https://leetcode.com/explore/interview/card/google/61/trees-and-graphs/3070/
@@ -50,6 +54,7 @@ public class CourseScheduleII {
     System.out.println(Arrays.toString(o.findOrder(4, new int[][]{{1, 0}, {2, 0}, {3, 1}, {3, 2}})));
   }
 
+  //Topological Sorting
   public int[] findOrder(int n, int[][] pres) {
     int idx = 0;
     int[] res = new int[n], degrees = new int[n];

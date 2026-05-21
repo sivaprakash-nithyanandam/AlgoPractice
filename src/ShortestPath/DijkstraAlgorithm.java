@@ -19,53 +19,15 @@ public class DijkstraAlgorithm {
   public static void main(String[] args) {
     DijkstraAlgorithm o = new DijkstraAlgorithm();
     //System.out.println(o.dijkstra(3, new int[][]{{0,1,5},{0,2,4},{1,2,2}}));
-    System.out.println(o.dijkstra(4, new int[][]{{0,1,5},{0,2,1},{2,4,2},{2,3,1},{3,4,1}}));
+    System.out.println(o.dijkstra(4, new int[][]{{0,1,5},{0,2,1},{2,4,4},{2,3,1},{3,4,-1}}));
   }
-
-  public int dijkstra1(int n, int[][] edges) {
-
-    Map<Integer, Map<Integer, Integer>> graph = new HashMap<>();
-
-    for (int[] edge : edges) {
-      graph.computeIfAbsent(edge[0], x -> new HashMap<>()).put(edge[1], edge[2]);
-      graph.computeIfAbsent(edge[1], x -> new HashMap<>()).put(edge[0], edge[2]);
-    }
-    int[] dist = new int[n+1];
-    Arrays.fill(dist, (int)1E6);
-    dist[0] = 0;
-
-    PriorityQueue<int[]> queue = new PriorityQueue<>((a, b) -> a[1] - b[1]);
-    queue.add(new int[]{0, 0});
-
-    while (!queue.isEmpty()) {
-      int[] node = queue.poll();
-
-      for (Map.Entry<Integer, Integer> entry : graph.get(node[0]).entrySet()) {
-        if (dist[node[0]] + entry.getValue() < dist[entry.getKey()]) {
-          dist[entry.getKey()] = dist[node[0]] + entry.getValue();
-          queue.add(new int[]{entry.getKey(), dist[entry.getKey()]});
-        }
-      }
-    }
-    return dist[n];
-  }
-
-
-
-
-
-
-
-
-
-
 
   public int dijkstra(int n, int[][] edges) {
 
     Map<Integer, Map<Integer, Integer>> graph = new HashMap<>();
     for (int[] edge : edges) {
       graph.computeIfAbsent(edge[0], x -> new HashMap<>()).put(edge[1], edge[2]);
-      graph.computeIfAbsent(edge[1], x -> new HashMap<>()).put(edge[0], edge[2]);
+      //graph.computeIfAbsent(edge[1], x -> new HashMap<>()).put(edge[0], edge[2]);
     }
     int[] dist = new int[n+1];
     Arrays.fill(dist, (int)1E9);
